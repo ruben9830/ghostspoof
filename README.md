@@ -1,24 +1,35 @@
 # 👻 GhostSpoof
 
-GhostSpoof is a standalone spoofing and phishing lab built for security testing, header forensics, and training simulations — all safely contained using [MailHog](https://github.com/mailhog/MailHog).
+A local phishing and spoofing simulation toolkit using `swaks` and `MailHog`. Built for red team practice, header forensics, and lab-safe email spoof testing — all without touching the internet.
+
+![Bash](https://img.shields.io/badge/Bash-CLI-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![GhostOps](https://img.shields.io/badge/GhostOps-Addon-lightgrey)
 
 ---
 
-## 💡 Features
+## 🧰 Features
 
-- ✅ Send spoofed emails (from any fake address)
-- 📬 View messages instantly in a web-based inbox
-- 🧠 Analyze full headers for SPF/DKIM/DMARC verdicts
-- 🔐 Test domain spoofability in seconds
-- 🎯 Simulate phishing campaigns (bulk fake sender & subject)
-- 🖼️ Terminal-based UI with ASCII branding
+- ✅ Send spoofed emails with fake headers and sender addresses
+- ✅ Run everything locally with MailHog (no external delivery)
+- ✅ Auto-launch web UI for email review (port `8025`)
+- ✅ Use custom SMTP relays or test real domains
+- ✅ Integrated with `GhostOps` or standalone
+
+---
+
+## 🧪 Included Tools
+
+| Tool | Description |
+|------|-------------|
+| `ghost_spoof_send.sh` | Interactive spoof mail sender using `swaks` |
+| `ghost_spoofhunt.sh` | Domain spoofability scanner (SPF, DMARC, DKIM) |
+| 🧪 `MailHog` | Docker-based local SMTP capture service (`localhost:1025` / web UI on `localhost:8025`) |
 
 ---
 
 ## 🚀 Quick Start
 
-1. **Install Docker**
-   ```bash
-   sudo apt install docker.io -y
-   sudo systemctl enable docker
-   sudo usermod -aG docker $USER
+### 1. Run MailHog locally
+```bash
+docker run -d --name spooflab -p 1025:1025 -p 8025:8025 mailhog/mailhog
